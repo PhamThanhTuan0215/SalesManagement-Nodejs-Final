@@ -14,7 +14,6 @@ function createBill(employeeName, order, detailsOrder) {
 
     doc.text(`------------Recent Order------------`);
     doc.text(`====================================`);
-    doc.text(`Employee's Name: ${employeeName}`);
     doc.text(`Customer's Phone: ${order.customerPhone}`);
     doc.text(`Customer's Name: ${order.customerName}`);
     doc.text(`Customer's Address: ${order.customerAddress}`);

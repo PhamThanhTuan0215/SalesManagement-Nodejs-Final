@@ -12,6 +12,8 @@ function createBill(employeeName, order, detailsOrder) {
 
     doc.pipe(stream);
 
+    doc.text(`------------Recent Order------------`);
+    doc.text(`====================================`);
     doc.text(`Employee's Name: ${employeeName}`);
     doc.text(`Customer's Phone: ${order.customerPhone}`);
     doc.text(`Customer's Name: ${order.customerName}`);
@@ -21,7 +23,7 @@ function createBill(employeeName, order, detailsOrder) {
     doc.text(`Received: $${order.received}`);
     doc.text(`Refunds: $${order.refunds}`);
     doc.text(`Date creation: ${order.creation_date}`);
-    doc.text(`===================================`);
+    doc.text(`====================================`);
     doc.text(`List products:`);
     doc.text(`Barcode - Name - Quantity - Total price`);
 
@@ -32,6 +34,7 @@ function createBill(employeeName, order, detailsOrder) {
     doc.end();
 
     stream.on('finish', () => {
+        req.session.billPathCurrent = outputPath
         console.log('Create bill success');
         return outputPath
     });

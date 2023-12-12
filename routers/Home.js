@@ -25,4 +25,6 @@ Router.get('/recent-order', IsLogin, HomeController.dashboard)
 
 Router.get('/information', IsLogin, HomeController.information)
 
+Router.get('/recent-order/bill', IsLogin, HomeController.downloadBill)
+
 module.exports = Router

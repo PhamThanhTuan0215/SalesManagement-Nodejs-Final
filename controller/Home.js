@@ -28,3 +28,11 @@ module.exports.information = (req, res) => {
 
     res.render('Information', {user: req.session.user, errorMessage, successMessage})
 }
+
+module.exports.downloadBill = (req, res) => {
+    
+    const billPathCurrent = req.session.billPathCurrent
+    delete req.session.billPathCurrent
+
+    res.download(billPathCurrent);
+}

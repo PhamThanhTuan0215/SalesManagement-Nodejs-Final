@@ -35,6 +35,7 @@ app.use((req, res) => {
 })
 
 const PORT = process.env.PORT || 3000
+const LINK_WEB = process.env.LINK_WEB || 'http://localhost:' + PORT
 const {MONGODB_URI, DB_NAME} = process.env
 mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
@@ -43,7 +44,7 @@ mongoose.connect(MONGODB_URI, {
 })
 .then(() => {
     app.listen(PORT, () => {
-        console.log('http://localhost:' + PORT)
+        console.log(LINK_WEB)
     })
 })
 .catch(e => console.log('Can not connect db server: ' + e.message))

@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer');
-const {JWT_SECRET, EMAIL_USER, EMAIL_PASS, LINK_WEB} = process.env
+const {JWT_SECRET, EMAIL_USER, EMAIL_PASS} = process.env
+const PORT = process.env.PORT || 3000
+const LINK_WEB = process.env.LINK_WEB || 'http://localhost:' + PORT
 
 let transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -27,7 +29,7 @@ function createToken(fullname, email, username, phone) {
         }
 
         let mailOptions = {
-            from: EMAIL_USER, // Địa chỉ email người gửi
+            from: EMAIL_USER,
             to: email,
             subject: 'Verify login for the first time',
             text: 'Please click the link below to log in',

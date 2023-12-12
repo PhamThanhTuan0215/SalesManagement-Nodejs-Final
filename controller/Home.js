@@ -12,7 +12,7 @@ module.exports.dashboard =  (req, res) => {
         DetailsOrder.find({ orderId: order._id })
         .then(details => {
 
-            createBill(req.session.user.fullname, order, details) // in bill to pdf file
+            req.session.billPathCurrent = createBill(req.session.user.fullname, order, details) // in bill to pdf file
 
             return res.render('Dashboard', {user: req.session.user, justPaid, order, detailsOrder: details})
         })

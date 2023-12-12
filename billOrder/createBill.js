@@ -34,7 +34,6 @@ function createBill(employeeName, order, detailsOrder) {
     doc.end();
 
     stream.on('finish', () => {
-        req.session.billPathCurrent = outputPath
         console.log('Create bill success');
         return outputPath
     });

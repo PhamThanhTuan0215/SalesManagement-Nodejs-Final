@@ -448,3 +448,19 @@ body {
 .topbar button:hover {
   background-color: #45a049;
 }
+
+#downloadBillBtn {
+  padding: 10px;
+  background-color: rgb(55, 106, 189);
+  color: white;
+  border-radius: 5px;
+  font-size: 20px;
+  float: right;
+}
+
+#downloadBillBtn:hover {
+  padding: 10px;
+  background-color: rgb(3, 105, 57);
+  color: white;
+  border-radius: 5px;
+}

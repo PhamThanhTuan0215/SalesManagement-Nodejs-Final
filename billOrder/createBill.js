@@ -3,7 +3,7 @@ const PDFDocument = require('pdfkit');
 const path = require('path');
 
 function createBill(employeeName, order, detailsOrder) {
-    const fileName = 'bill' + '_' + order._id + '.pdf'
+    const fileName = 'bill.pdf'
     const outputPath = path.join(__dirname, '..', 'public', 'Bill', fileName);
     const stream = fs.createWriteStream(outputPath, { encoding: 'utf8' });
     stream.write('\uFEFF', 'utf8');

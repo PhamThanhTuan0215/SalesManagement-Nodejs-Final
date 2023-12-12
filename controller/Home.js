@@ -1,5 +1,7 @@
 const DetailsOrder = require('../models/DetailsOrder')
 const createBill = require('../billOrder/createBill')
+const path = require('path');
+const fs = require('fs');
 
 module.exports.dashboard =  (req, res) => {
     let justPaid = ''
@@ -12,7 +14,7 @@ module.exports.dashboard =  (req, res) => {
         DetailsOrder.find({ orderId: order._id })
         .then(details => {
 
-            req.session.billPathCurrent = createBill(req.session.user.fullname, order, details) // in bill to pdf file
+            createBill(req.session.user.fullname, order, details) // in bill to pdf file
 
             return res.render('Dashboard', {user: req.session.user, justPaid, order, detailsOrder: details})
         })
@@ -31,12 +33,20 @@ module.exports.information = (req, res) => {
 
 module.exports.downloadBill = (req, res) => {
     
-    const billPathCurrent = req.session.billPathCurrent
-    delete req.session.billPathCurrent
+    const fileName = 'bill.pdf'
+    const outputPath = path.join(__dirname, '..', 'public', 'Bill', fileName);
 
-    if(!billPathCurrent) {
-        return res.redirect('/recent-order')
-    }
-
-    return res.download(billPathCurrent);
+    fs.access(outputPath, fs.constants.F_OK, (err) => {
+        if (err) {
+            return res.redirect('/recent-order')
+        } else {
+            res.download(outputPath, (err) => {
+                if (err) {
+                    return res.redirect('/recent-order')
+                } else {
+                    fs.unlinkSync(outputPath)
+                }
+            })
+        }
+    });
 }

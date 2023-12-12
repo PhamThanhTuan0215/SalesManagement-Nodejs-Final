@@ -34,5 +34,9 @@ module.exports.downloadBill = (req, res) => {
     const billPathCurrent = req.session.billPathCurrent
     delete req.session.billPathCurrent
 
-    res.download(billPathCurrent);
+    if(!billPathCurrent) {
+        return res.redirect('/recent-order')
+    }
+
+    return res.download(billPathCurrent);
 }

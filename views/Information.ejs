@@ -314,6 +314,10 @@
                 closeModal('editEmployeeModal');
             });
 
+            document.getElementById('editEmployeeCloseBtn').addEventListener('click', function () {
+                closeModal('editEmployeeModal');
+            });
+
             document.getElementById('openChangePW').addEventListener('click', function (event) {
 
                 const changeId = event.target.getAttribute('data-id');
@@ -325,6 +329,10 @@
             });
 
             document.getElementById('changePWCancelBtn').addEventListener('click', function () {
+                closeModal('changePWModal');
+            });
+
+            document.getElementById('changePWCloseBtn').addEventListener('click', function () {
                 closeModal('changePWModal');
             });
 

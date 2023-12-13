@@ -230,6 +230,25 @@
             }
         })
 
+        hiddenPreviewAfterAddCart()
+
+        function hiddenPreviewAfterAddCart() {
+            let addCartElements = document.querySelectorAll('.cart');
+
+            addCartElements.forEach(function (addCartElement) {
+                addCartElement.addEventListener('click', function (event) {
+
+                    let preveiwContainer = document.querySelector(".products-preview");
+                    let previewBox = preveiwContainer.querySelectorAll(".preview");
+
+                    for (var i = 0; i < previewBox.length; i++) {
+                        previewBox[i].classList.remove("active");
+                        preveiwContainer.style.display = "none";
+                    }
+                });
+            });
+        }
+
         document.getElementById('addBtn').addEventListener('click', function (event) {
 
             let valueInput = document.getElementById('valueInput')
@@ -393,6 +412,8 @@
                     };
                 });
             }
+
+            hiddenPreviewAfterAddCart()
         }
 
         setTimeout(function () {

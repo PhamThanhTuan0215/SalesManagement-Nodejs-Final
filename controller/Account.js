@@ -241,13 +241,10 @@ module.exports.edit_employee = (req, res) => {
 
     url_avatar = newImageName;
 
-    const hashed = bcrypt.hashSync(username, 5)
-    const password = hashed
-
     let dataUpdate = {
-        fullname, email, username, password, phone, url_avatar
+        fullname, email, username, phone, url_avatar
     }
-    let supportedFields = ['fullname', 'email', 'username', 'password', 'phone', 'url_avatar']
+    let supportedFields = ['fullname', 'email', 'username', 'phone', 'url_avatar']
 
     for (field in dataUpdate) {
         if (!supportedFields.includes(field)) {
